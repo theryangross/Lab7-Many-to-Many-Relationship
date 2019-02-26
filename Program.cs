@@ -18,10 +18,10 @@ namespace Lab7_Many_to_Many_Relationship
                     Console.WriteLine($"{course.CourseName}: ");
                     foreach (var student in course.StudentCourses)
                     {
-                        Console.WriteLine($"\t {student.Student.FirstName} {student.Student.LastName}   GPA: {student.GPA}");
+                        Console.WriteLine($"\t {student.Student.FirstName} {student.Student.LastName} - GPA: {student.GPA}");
                     }
-                    Console.WriteLine();
                 }
+                Console.WriteLine();
             }
         }
 
@@ -37,6 +37,8 @@ namespace Lab7_Many_to_Many_Relationship
                     new Course {CourseName = "CIDM 2315 Object Oriented Programming"},
                     new Course {CourseName = "CIDM 3312 Advanced Business Programming"}
                 };
+                db.AddRange(Courses);
+                db.SaveChanges();
 
                 List<Student> Students = new List<Student>
                 {
@@ -45,17 +47,16 @@ namespace Lab7_Many_to_Many_Relationship
                     new Student {FirstName = "Amy", LastName = "Whinehouse"},
                     new Student {FirstName = "George", LastName = "Michael"}
                 };
+                db.AddRange(Students);
+                db.SaveChanges();
 
                 List<StudentCourse> joinTable = new List<StudentCourse>()
                 {
-                    new StudentCourse {Student = Students[1], Course = Courses[1], GPA = 4.0m},
-                    new StudentCourse {Student = Students[2], Course = Courses[1], GPA = 3.75m},
-                    new StudentCourse {Student = Students[3], Course = Courses[2], GPA = 3.50m},
-                    new StudentCourse {Student = Students[4], Course = Courses[2], GPA = 3.25m}
+                    new StudentCourse {Student = Students[0], Course = Courses[0], GPA = 4.0m},
+                    new StudentCourse {Student = Students[1], Course = Courses[0], GPA = 3.75m},
+                    new StudentCourse {Student = Students[2], Course = Courses[1], GPA = 3.50m},
+                    new StudentCourse {Student = Students[3], Course = Courses[1], GPA = 3.25m}
                 };
-
-                db.Add(Courses);
-                db.AddRange(Students);
                 db.AddRange(joinTable);
                 db.SaveChanges();
             }
@@ -79,7 +80,7 @@ namespace Lab7_Many_to_Many_Relationship
 
                 StudentCourse transferStudent = new StudentCourse
                 {
-                    Student = db.Students.Find(5), Course = db.Courses.Find(2), GPA = 3.00m
+                    Student = db.Students.Find(4), Course = db.Courses.Find(1), GPA = 3.00m
                 };
                 db.Add(transferStudent);
                 db.SaveChanges();
