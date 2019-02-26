@@ -80,7 +80,7 @@ namespace Lab7_Many_to_Many_Relationship
 
                 StudentCourse transferStudent = new StudentCourse
                 {
-                    Student = db.Students.Find(4), Course = db.Courses.Find(1), GPA = 3.00m
+                    Student = db.Students.Find(5), Course = db.Courses.Find(1), GPA = 3.00m
                 };
                 db.Add(transferStudent);
                 db.SaveChanges();
