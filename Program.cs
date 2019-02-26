@@ -74,10 +74,15 @@ namespace Lab7_Many_to_Many_Relationship
                 {
                     FirstName = "Aretha", LastName = "Franklin"
                 };
+                db.Add(Transfer);
+                db.SaveChanges();
+
                 StudentCourse transferStudent = new StudentCourse
                 {
-                    Student = Transfer, Course = Course[1], GPA = 3.00m
+                    Student = db.Students.Find(5), Course = db.Courses.Find(2), GPA = 3.00m
                 };
+                db.Add(transferStudent);
+                db.SaveChanges();
             }
             List();
         }
